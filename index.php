@@ -20,13 +20,20 @@ if (!empty($path)) {
 	$graudebeleza = "Belezômetro!";
 	$frase = "Descubra sua beleza em barbaruiva.xyz/belezometro/nome";
 }
+
+$reqUri = $_SERVER['REQUEST_URI'];
+//caso veio barra no final, remove.
+if ($reqUri[strlen($reqUri) - 1] == '/') {
+	$reqUri = substr($reqUri, 0, strlen($reqUri) - 1);
+}
+$url = 'http://' . $_SERVER['HTTP_HOST'] . substr($reqUri, 0, strrpos($reqUri, '/'));
 ?>
 <html>
 <head>
 <meta property="og:title" content="<?=$graudebeleza?>"/>
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="<?=$frase?>"/>
-<meta property="og:image" content="http://barbaruiva.xyz/deploy/apple-touch-icon.png"/>
+<meta property="og:image" content="<?=$url?>/icon.png"/>
 <meta property="og:site_name" content="BarbaRuiva"/>
 	<title>Belezometro - BarbaRuiva</title>
 </head>
